@@ -1,4 +1,4 @@
-<p align="center"><a href="https://github.com/EXLER/winogrono" target="_blank"><img src="https://i.imgur.com/LuhgD5E.png" width="400"></a></p>
+<p align="center"><a href="https://github.com/EXLER/winogrono" target="_blank"><img src="https://images2.imgbox.com/85/64/NGmjxwnx_o.png" width="400"></a></p>
 
 <h1 align="center">Winogrono</h1>
 
@@ -17,7 +17,7 @@
 * [ ] CLI
 	- [ ] Install script (for installing dependencies & unpacking web interface)
 	- [ ] Scripts should be possible to run independently
-* [ ] Scripts 
+* [ ] Features
 	- [ ] Install and configure lighttpd with Let's Encrypt
 	- [ ] Enable SSH
 	- [ ] Change hostname
