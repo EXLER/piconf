@@ -8,6 +8,22 @@
 
 ### Components
 
+### TODO
+* [ ] Web interface
+	- [ ] Express & MySQL setup
+	- [ ] Handlebars templating
+	- [ ] Login screen 
+	- [ ] WebSSH
+* [ ] CLI
+	- [ ] Install script (for installing dependencies & unpacking web interface)
+	- [ ] Scripts should be possible to run independently
+* [ ] Scripts 
+	- [ ] Install and configure lighttpd with Let's Encrypt
+	- [ ] Enable SSH
+	- [ ] Change hostname
+ 	- [ ] Install and configure Vikish
+	- [ ] Update /etc/update-motd.d/ to show system info at startup
+
 ### License
 
 Copyright (c) 2018 by ***Kamil Marut***.
