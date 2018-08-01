@@ -10,9 +10,10 @@
 
 ### TODO
 * [ ] Web interface
-	- [ ] Express & MySQL setup
-	- [ ] Handlebars templating
-	- [ ] Login screen 
+	- [x] Express & SQLite setup
+	- [x] Pug templating setup
+	- [ ] Login screen
+	- [ ] Launch scripts from web
 	- [ ] WebSSH
 * [ ] CLI
 	- [ ] Install script (for installing dependencies & unpacking web interface)
