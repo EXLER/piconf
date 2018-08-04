@@ -14,11 +14,11 @@ echo "pi:${NEW_PASSWORD}" | sudo chpasswd
 
 # Updating system and installing packages
 echo -e "[+] Updating system and installing packages..\n"
-sudo apt update
-sudo apt full-upgrade
+apt update
+apt full-upgrade
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt install -y nodejs
-sudo npm install -g pm2
+apt install -y nodejs
+npm install -g pm2
 
 # Starting web interface
 echo -e "[+] Starting web interace.. Default port: 4803\n"
@@ -27,7 +27,7 @@ pm2 startup
 
 # Cleaning up
 echo -e "[+] Cleaning up after install..\n"
-sudo apt autoremove
+apt autoremove
 
 # Reboot
-sudo reboot
+reboot
