@@ -12,7 +12,7 @@ fi
 read -s -p "[?] New password: " NEW_PASSWORD
 echo "pi:${NEW_PASSWORD}" | sudo chpasswd
 
-# Updating system and installing packages
+# Update system and installing packages
 echo -e "[+] Updating system and installing packages..\n"
 apt update
 apt full-upgrade
@@ -20,12 +20,12 @@ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 apt install -y nodejs
 npm install -g pm2
 
-# Starting web interface
-echo -e "[+] Starting web interace.. Default port: 4803\n"
+# Start web interface
+echo -e "[+] Starting web interface.. Default port: 4803\n"
 pm2 start web/bin/www --name winogrono-web
 pm2 startup
 
-# Cleaning up
+# Clean up
 echo -e "[+] Cleaning up after install..\n"
 apt autoremove
 
