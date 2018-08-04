@@ -33,6 +33,7 @@ var db = new sqlite3.Database(process.env.DB_NAME)
 
 // Routing
 app.get('/', routes.index);
+app.get('/login', routes.login);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

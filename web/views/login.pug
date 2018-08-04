@@ -1,0 +1,21 @@
+extends partials/layout
+
+block content
+	#login
+		h2 Dashboard
+		form(method="POST", action="#")
+			br
+
+			label(for="username") Username
+			input#username.input-login(name="username", type="text")
+
+			label(for="password") Password
+			input#password.input-login(name="password", type="password")
+
+			br
+			br
+
+			input.submit-login(name="submit", value="Login", type="submit")
+
+
+
