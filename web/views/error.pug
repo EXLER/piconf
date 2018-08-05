@@ -1,6 +1,9 @@
 extends partials/layout
 
 block content
-	h1= message
-	h2= error.status
-	pre #{error.stack}
+	#page
+		img(src="images/winogrono-logo.png")
+
+		h2.error-message An error has occured.
+		h2.error-status= error.status
+		pre #{error.stack}

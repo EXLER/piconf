@@ -8,7 +8,7 @@
 body {
     font: 13px/18px 'Quicksand', Arial, Helvetica, sans-serif;
     line-height: 18px;
-    color: #000;
+    color: #fff;
     margin: 0 0 0 0;
     background: #2D67E4;
 }
@@ -22,6 +22,14 @@ body {
 	img {
 		width: 50%;
 	}
+}
+
+.error-status {
+    padding-top: 0.5em;
+}
+
+pre {
+    text-align: left;
 }
 
 .menu {
