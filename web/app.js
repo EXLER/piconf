@@ -12,7 +12,7 @@ var sqlite3 = require('sqlite3').verbose();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var routes = require('./routes');
+var authRoutes = require('./routes/auth');
 
 var app = express();
 
@@ -24,16 +24,16 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
-  secret: process.env.SECRET,
-  saveUninitialized: true,
-  resave: true
+    secret: process.env.SECRET,
+    saveUninitialized: true,
+    resave: true
 }));
 app.use(cookieParser());
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: false, // true = .sass and false = .scss
-  sourceMap: true
+    src: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'public'),
+    indentedSyntax: false, // true = .sass and false = .scss
+    sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -41,25 +41,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 var db = new sqlite3.Database(process.env.DB_NAME);
 
 // Routing
-app.get('/', routes.index);
-app.post('/login', passport.authenticate('local', { successRedirect: '/',
-                                                    failureRedirect: '/login',
-                                                    failureFlash: 'Invalid username or password.' }));
+app.get('/', function (req, res) {
+    res.render('index', { title: 'Winogrono-web' });
+});
+app.use('/auth', authRoutes);
 
 // Catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(httpErrors(404));
+app.use(function (req, res, next) {
+    next(httpErrors(404));
 });
 
 // Error handler
-app.use(function(err, req, res, next) {
-  // Set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // Set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // Render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // Render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

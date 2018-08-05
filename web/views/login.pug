@@ -2,8 +2,8 @@ extends partials/layout
 
 block content
 	#login
-		h2 Dashboard
-		form(method="POST", action="#")
+		img(src="../images/winogrono-logo.png" alt="Dashboard")
+		form(method="POST")
 			br
 
 			label(for="username") Username
@@ -15,7 +15,8 @@ block content
 			br
 			br
 
-			input.submit-login(name="submit", value="Login", type="submit")
+			a.submit-login(href="/auth/login") Login
+			<!-- input.submit-login(name="submit", value="Login", type="submit") -->
 
 
 

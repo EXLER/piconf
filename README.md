@@ -1,4 +1,4 @@
-<p align="center"><a href="https://github.com/EXLER/winogrono" target="_blank"><img src="https://images2.imgbox.com/85/64/NGmjxwnx_o.png" width="400"></a></p>
+<p align="center"><a href="https://github.com/EXLER/winogrono" target="_blank"><img src="web/public/images/winogrono-logo.png" width="400"></a></p>
 
 <h1 align="center">Winogrono</h1>
 
