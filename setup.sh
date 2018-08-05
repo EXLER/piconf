@@ -25,6 +25,10 @@ echo -e "[+] Starting web interface.. Default port: 4803\n"
 pm2 start web/bin/www --name winogrono-web
 pm2 startup
 
+# Add folder with CLI scripts to PATH
+echo -e "[+] Copying files to /usr/bin..\n"
+cp ./cli/winogrono.sh /usr/bin
+
 # Clean up
 echo -e "[+] Cleaning up after install..\n"
 apt autoremove
