@@ -10,14 +10,12 @@
 
 ### TODO
 * [ ] Web interface
-	- [x] Express & SQLite setup
-	- [x] Pug templating setup
-	- [ ] Login screen
-	- [ ] Launch scripts from web
+	- [x] NodeJS setup
+	- [x] Pug layout
 	- [ ] WebSSH
 * [ ] CLI
-	- [ ] Install script (for installing dependencies & unpacking web interface)
-	- [ ] Scripts should be possible to run independently
+	- [ ] Install script (for installing dependencies, unpacking web interface, setting firewall etc.)
+	- [ ] All-in-one script (uses all the other script interactively)
 * [ ] Features
 	- [ ] Install and configure lighttpd with Let's Encrypt
 	- [ ] Enable SSH

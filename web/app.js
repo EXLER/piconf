@@ -1,18 +1,10 @@
 var path = require('path');
-var crypto = require('crypto');
 
 var httpErrors = require('http-errors');
 var express = require('express');
-var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
-var dotenv = require('dotenv').config();
-var sqlite3 = require('sqlite3').verbose();
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-
-var authRoutes = require('./routes/auth');
 
 var app = express();
 
@@ -23,11 +15,6 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(session({
-    secret: process.env.SECRET,
-    saveUninitialized: true,
-    resave: true
-}));
 app.use(cookieParser());
 app.use(sassMiddleware({
     src: path.join(__dirname, 'public'),
@@ -37,14 +24,12 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Database connection
-var db = new sqlite3.Database(process.env.DB_NAME);
-
 // Routing
 app.get('/', function (req, res) {
-    res.render('index', { title: 'Winogrono-web' });
+    res.render('index', {
+        title: 'Winogrono-web'
+    });
 });
-app.use('/auth', authRoutes);
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -61,5 +46,8 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+// Utility
+function formatBytes(a, b) { if (0 === a) return "0 Bytes"; var c = 1024, d = b || 2, e = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"], f = Math.floor(Math.log(a) / Math.log(c)); return parseFloat((a / Math.pow(c, f)).toFixed(d)) + " " + e[f]; }
 
 module.exports = app;
