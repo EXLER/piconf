@@ -14,14 +14,14 @@
 	- [x] Pug layout
 	- [ ] WebSSH
 * [ ] CLI
-	- [ ] Install script (for installing dependencies, unpacking web interface, setting firewall etc.)
-	- [ ] All-in-one script (uses all the other script interactively)
+	- [ ] setup.sh (for installing dependencies, unpacking web interface, setting firewall etc.)
+	- [ ] winogrono.sh (for more advanced features)
 * [ ] Features
-	- [ ] Install and configure lighttpd with Let's Encrypt
-	- [ ] Enable SSH
-	- [ ] Change hostname
- 	- [ ] Install and configure Vikish
-	- [ ] Update /etc/update-motd.d/ to show system info at startup
+	- [ ] Install and configure Caddy
+	- [ ] Install and configure Vikish
+	- [x] Enable SSH
+	- [x] Change hostname
+	- [x] Update /etc/update-motd.d/ to show system info at startup
 
 ### License
 
