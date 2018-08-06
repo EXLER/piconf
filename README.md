@@ -1,27 +1,28 @@
-<p align="center"><a href="https://github.com/EXLER/winogrono" target="_blank"><img src="web/public/images/winogrono-logo.png" width="400"></a></p>
+<p align="center"><a href="https://github.com/EXLER/winogrono" target="_blank"><img src="https://images2.imgbox.com/f9/4a/TxVj86SE_o.png" width="400"></a></p>
 
 <h1 align="center">Winogrono</h1>
 
-<p align="center">Raspberry Pi configurator & personal control system.</p>
+<p align="center">Raspberry Pi configuration helper.</p>
 
 ### Usage
 
-### Components
+```bash
+# Install git and download winogrono
+$ sudo apt install git && git clone https://github.com/exler/winogrono
+$ cd winogrono/
 
-### TODO
-* [ ] Web interface
-	- [x] NodeJS setup
-	- [x] Pug layout
-	- [ ] WebSSH
-* [ ] CLI
-	- [ ] setup.sh (for installing dependencies, unpacking web interface, setting firewall etc.)
-	- [ ] winogrono.sh (for more advanced features)
-* [ ] Features
-	- [ ] Install and configure Caddy
-	- [ ] Install and configure Vikish
-	- [x] Enable SSH
-	- [x] Change hostname
-	- [x] Update /etc/update-motd.d/ to show system info at startup
+# Launch the setup and enter your new password and hostname when prompted
+$ sudo ./winogrono.sh
+```
+
+### Configuration details:
+
+* Sets new password for user 'pi'
+* Sets new hostname
+* Updates & upgrades system packages
+* Installs 'ufw' firewall and configures it to only allow connections to port 22, 80 & 443
+* Enables SSH
+* Updates system MOTD to show system information
 
 ### License
 
