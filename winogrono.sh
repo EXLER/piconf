@@ -17,30 +17,28 @@ echo "pi:${NEW_PASSWORD}" | sudo chpasswd
 read -p "[?] New hostname: " NEW_HOSTNAME
 echo -e "\n"
 
+# Ask for coutnry code
+read -p "[?] Country code (e.g.: gb): " COUNTRY_CODE
+
 # Update system and installing packages
-echo -e "[+] Updating system and installing packages..\n"
+echo -e "[+] Updating system..\n"
 apt update
 apt full-upgrade -y
-apt install -y ufw
+
+# Update Wi-Fi country code
+echo -e "[+] Updating Wi-Fi country code..\n"
+raspi-config nonint do_wifi_country $COUNTRY_CODE
 
 # Enable SSH
 echo -e "[+] Enabling SSH..\n"
 raspi-config nonint do_ssh 0
 
-# Enable firewall
-echo -e "[+] Enabling firewall..\n"
-ufw enable
-ufw allow 22 80 443
-ufw limit ssh/tcp
-
 # Update MOTD
 echo -e "[+] Updating MOTD..\n"
+rm -f /etc/motd
 rm -rf /etc/update-motd.d/*
 cp ./modules/10-info /etc/update-motd.d
-
-# Clean up
-echo -e "[+] Cleaning up after install..\n"
-apt autoremove
+chmod +x /etc/update-motd.d/10-info
 
 # Set new hostname
 truncate -s 0 /etc/hostname

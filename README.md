@@ -19,8 +19,8 @@ $ sudo ./winogrono.sh
 
 * Sets new password for user 'pi'
 * Sets new hostname
+* Sets country code for Wi-Fi connection
 * Updates & upgrades system packages
-* Installs 'ufw' firewall and configures it to only allow connections to port 22, 80 & 443
 * Enables SSH
 * Updates system MOTD to show system information
 
