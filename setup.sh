@@ -9,11 +9,11 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Set new password
-read -s -p "[?] New password: " NEW_PASSWORD
+read -s -p "[?] New password: \n" NEW_PASSWORD
 echo "pi:${NEW_PASSWORD}" | sudo chpasswd
 
 # Set new hostname
-read -s -p "[?] New hostname: " NEW_HOSTNAME
+read -s -p "[?] New hostname: \n" NEW_HOSTNAME
 truncate -s 0 /etc/hostname
 echo $NEW_HOSTNAME > /etc/hostname
 sed -i "$ d" /etc/hosts
@@ -21,11 +21,14 @@ echo "127.0.1.1		${NEW_HOSTNAME}" > /etc/hosts
 
 # Update system and installing packages
 echo -e "[+] Updating system and installing packages..\n"
-apt update
+apt update -y
 apt full-upgrade
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 apt install -y nodejs ufw
+npm install -g npm@latest 
 npm install -g pm2
+mkdir ./web/node_modules
+npm install --prefix ./web
 
 # Enable SSH
 echo -e "[+] Enabling SSH..\n"
@@ -39,7 +42,8 @@ ufw limit ssh/tcp
 
 # Start web interface
 echo -e "[+] Starting web interface.. Default port: 4803\n"
-pm2 start web/bin/www --name winogrono-web
+pm2 start ./web/bin/www --watch --name winogrono-web
+pm2 save
 pm2 startup
 
 # Add folder with CLI scripts to PATH
