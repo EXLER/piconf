@@ -36,7 +36,7 @@ ufw limit ssh/tcp
 # Update MOTD
 echo -e "[+] Updating MOTD..\n"
 rm -rf /etc/update-motd.d/*
-cp ./scripts/10-info /etc/update-motd.d
+cp ./modules/10-info /etc/update-motd.d
 
 # Clean up
 echo -e "[+] Cleaning up after install..\n"
