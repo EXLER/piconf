@@ -1,5 +1,3 @@
-<p align="center"><a href="https://github.com/EXLER/winogrono" target="_blank"><img src="https://images2.imgbox.com/f9/4a/TxVj86SE_o.png" width="400"></a></p>
-
 <h1 align="center">Winogrono</h1>
 
 <p align="center">Raspberry Pi configuration helper.</p>
