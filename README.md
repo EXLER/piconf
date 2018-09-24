@@ -4,6 +4,9 @@
 
 ## Initial Configuration
 
+* [Download NOOBS](https://www.raspberrypi.org/downloads/noobs/)
+* [Download Raspbian](https://www.raspberrypi.org/downloads/raspbian/)
+
 ```bash
 ~ >>> touch /Volumes/boot/ssh # Enable SSH
 # If you want to automatically connect to a WiFi connection, create and edit the file below
