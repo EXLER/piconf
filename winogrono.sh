@@ -4,14 +4,13 @@ set -e
 
 # Check if user has superuser priviliges
 if [ "$EUID" -ne 0 ]; then
-	echo "[!] Please run the Winogrono setup as root!"
+	echo "[!] You need superuser privileges to use Winogrono!"
 	exit 1
 fi
 
 # Set new password
 read -s -p "[?] New password: " NEW_PASSWORD
 echo -e "\n"
-echo "pi:${NEW_PASSWORD}" | sudo chpasswd
 
 # Set new hostname
 read -p "[?] New hostname: " NEW_HOSTNAME
@@ -30,8 +29,8 @@ apt full-upgrade -y
 echo -e "[+] Updating MOTD..\n"
 rm -f /etc/motd
 rm -rf /etc/update-motd.d/*
-chmod +x ./MOTD
-cp ./MOTD /etc/update-motd.d/10-info
+chmod +x ./winogrono-info
+cp ./winogrono-info /etc/update-motd.d/10-info
 
 # Finito!
 reboot
