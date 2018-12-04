@@ -14,23 +14,23 @@ echo -e "\n"
 
 # Set new hostname
 read -p "[?] New hostname: " NEW_HOSTNAME
-echo -e "\n"
 truncate -s 0 /etc/hostname
 echo $NEW_HOSTNAME > /etc/hostname
 sed -i "$ d" /etc/hosts
 echo "127.0.1.1		${NEW_HOSTNAME}" > /etc/hosts
 
 # Update system and installing packages
-echo -e "[+] Updating system..\n"
+echo -e "\n[+] Updating system..\n"
 apt update
 apt full-upgrade -y
 
 # Update MOTD
-echo -e "[+] Updating MOTD..\n"
+echo -e "\n[+] Updating MOTD..\n"
 rm -f /etc/motd
 rm -rf /etc/update-motd.d/*
 chmod +x ./winogrono-info
 cp ./winogrono-info /etc/update-motd.d/10-info
 
 # Finito!
+echo -e "\n[!] Done! Rebooting.."
 reboot
