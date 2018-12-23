@@ -21,13 +21,10 @@
 ~ >>> ping raspberrypi.local # Find Raspberry's local IP address
 ~ >>> ssh pi@192.168.*.* # Default password is 'raspbbery'
 
-# Install Git and download Winogrono
-~ >>> sudo apt update && sudo apt install git
-~ >>> git clone https://github.com/exler/winogrono
-~ >>> cd winogrono/
-
-# Launch the setup
-~/winogrono >>> sudo bash winogrono.sh
+# Download and launch Winogrono
+~ >>> wget -O winogrono.tar.gz https://github.com/EXLER/winogrono/archive/0.1.2.tar.gz
+~ >>> tar -xzf winogrono.tar.gz
+~ >>> sudo bash winogrono-0.1.2/winogrono.sh
 ```
 
 ## License
