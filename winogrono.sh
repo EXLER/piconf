@@ -11,6 +11,7 @@ fi
 # Set new password
 read -s -p "[?] New password: " NEW_PASSWORD
 echo -e "\n"
+echo "pi:${NEW_PASSWORD}" | sudo chpasswd
 
 # Set new hostname
 read -p "[?] New hostname: " NEW_HOSTNAME
