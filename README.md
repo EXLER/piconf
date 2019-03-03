@@ -19,7 +19,7 @@
 ```bash
 # Connect to Raspberry Pi
 ~ >>> ping raspberrypi.local # Find Raspberry's local IP address
-~ >>> ssh pi@192.168.*.* # Default password is 'raspbbery'
+~ >>> ssh pi@192.168.*.* # Default password is 'raspberry'
 
 # Download and launch Winogrono (replace stars with latest version from releases)
 ~ >>> wget -O winogrono.tar.gz https://github.com/EXLER/winogrono/archive/*.*.*.tar.gz
