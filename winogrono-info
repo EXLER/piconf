@@ -9,16 +9,13 @@ UPTIME=`printf "%d days, %02dh%02dm%02ds" "$days" "$hours" "$mins" "$secs"`
 NO_FORMAT="\033[0m"
 C_YELLOW="\033[38;5;226m"
 
-# get the load averages
-read one five fifteen rest < /proc/loadavg
-
 echo "$(tput setaf 2)
    .~~.   .~~.    `date +"%A, %e %B %Y, %r"`
   '. \ ' ' / .'   `uname -srmo`$(tput setaf 1)
    .~ .~~~..~.
   : .~.'~'.~. :   Uptime.............: ${UPTIME}
  ~ (   ) (   ) ~  Memory.............: `cat /proc/meminfo | grep MemFree | awk {'print $2'}`kB (Free) / `cat /proc/meminfo | grep MemTotal | awk {'print $2'}`kB (Total)
-( : '~'.~.'~' : ) Load Averages......: ${one}, ${five}, ${fifteen} (1, 5, 15 min)
+( : '~'.~.'~' : ) CPU Temperature....: `/opt/vc/bin/vcgencmd measure_temp | cut -c 6-`
  ~ .~ (   ) ~. ~  Running Processes..: `ps ax | wc -l | tr -d " "`
   (  : '~' :  )   IP Addresses.......: `ip a | grep glo | awk '{print $2}' | head -1 | cut -f1 -d/`
    '~ .~~~. ~'          Powered by ${C_YELLOW}Winogrono${NO_FORMAT}
