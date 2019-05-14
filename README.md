@@ -8,24 +8,21 @@
 * [Download Raspbian](https://www.raspberrypi.org/downloads/raspbian/)
 
 ```bash
-~ >>> touch /Volumes/boot/ssh # Enable SSH
+# Enable SSH
+$ touch /Volumes/boot/ssh
 
 # If you want to automatically connect to a WiFi connection, create the file below using the example in the repo
-~ >>> nano /Volumes/boot/wpa_supplicant.conf # Replace the 'ssid' and 'psk' variables
+$ nano /Volumes/boot/wpa_supplicant.conf # Replace the 'ssid' and 'psk' variables
+
+# Connect to Raspberry Pi
+$ ping raspberrypi.local # Find Raspberry's local IP address
+$ ssh pi@192.168.*.* # Default password is 'raspberry'
 ```
 
 ## Usage
 
 ```bash
-# Connect to Raspberry Pi
-~ >>> ping raspberrypi.local # Find Raspberry's local IP address
-~ >>> ssh pi@192.168.*.* # Default password is 'raspberry'
-
-# Download and launch Winogrono (replace stars with latest version from releases)
-~ >>> wget -O winogrono.tar.gz https://github.com/EXLER/winogrono/archive/*.*.*.tar.gz
-~ >>> tar -xzf winogrono.tar.gz
-~ >>> cd winogrono-*.*.*/
-~/winogrono-*.*.* >>> sudo bash winogrono.sh
+$ sudo bash winogrono.sh
 ```
 
 ## License
