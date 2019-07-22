@@ -6,8 +6,6 @@ mins=$((${upSeconds}/60%60))
 hours=$((${upSeconds}/3600%24))
 days=$((${upSeconds}/86400))
 UPTIME=`printf "%d days, %02dh%02dm%02ds" "$days" "$hours" "$mins" "$secs"`
-NO_FORMAT="\033[0m"
-C_YELLOW="\033[38;5;226m"
 
 echo "$(tput setaf 2)
    .~~.   .~~.    `date +"%A, %e %B %Y, %r"`
@@ -18,6 +16,6 @@ echo "$(tput setaf 2)
 ( : '~'.~.'~' : ) CPU Temperature....: `/opt/vc/bin/vcgencmd measure_temp | cut -c 6-`
  ~ .~ (   ) ~. ~  Running Processes..: `ps ax | wc -l | tr -d " "`
   (  : '~' :  )   IP Addresses.......: `ip a | grep glo | awk '{print $2}' | head -1 | cut -f1 -d/`
-   '~ .~~~. ~'          Powered by ${C_YELLOW}Winogrono${NO_FORMAT}
+   '~ .~~~. ~'
        '~'
 $(tput sgr0)"
