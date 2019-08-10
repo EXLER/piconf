@@ -9,7 +9,7 @@ IFS=$'\n\t'
 
 # Check if user has superuser priviliges
 if [[ "$EUID" -ne 0 ]]; then
-	printf "[!] You need superuser privileges to run this script!"
+	printf "[!] You need superuser privileges to run this script!\n"
 	exit 1
 fi
 
@@ -33,4 +33,4 @@ chmod +x ./MOTD
 cp ./MOTD /etc/update-motd.d/10-info
 
 # Finito!
-printf "\n[!] Done! Reboot your Raspberry Pi to see changes take effect."
+printf "\n[!] Done! Reboot your Raspberry Pi to see changes take effect.\n"

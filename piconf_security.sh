@@ -9,18 +9,13 @@ IFS=$'\n\t'
 
 # Check if user has superuser priviliges
 if [[ "$EUID" -ne 0 ]]; then
-	printf "[!] You need superuser privileges to run this script!"
+	printf "[!] You need superuser privileges to run this script!\n"
 	exit 1
 fi
-
-# Adds new user and removes default 'pi' user
-read -p "[?] New username: " NEW_USERNAME
-adduser ${NEW_USERNAME}
-adduser ${NEW_USERNAME} sudo
-deluser --remove-home pi
 
 # Installs ufw and fail2ban
 printf "[!] Installing 'ufw' and 'fail2ban'..."
 apt install -y ufw fail2ban
+ufw allow 22/tcp
 ufw enable
 cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local

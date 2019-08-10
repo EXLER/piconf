@@ -9,7 +9,7 @@ IFS=$'\n\t'
 
 # Check if user has superuser priviliges
 if [[ "$EUID" -ne 0 ]]; then
-	printf "[!] You need superuser privileges to run this script!"
+	printf "[!] You need superuser privileges to run this script!\n"
 	exit 1
 fi
 
@@ -33,3 +33,7 @@ mysql -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost',
 mysql -e "DROP DATABASE IF EXISTS test"
 # Make our changes take effect
 mysql -e "FLUSH PRIVILEGES"
+
+# Add rules to firewall
+ufw allow 80/tcp
+ufw allow 443/tcp

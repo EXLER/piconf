@@ -11,7 +11,8 @@
 # Enable SSH
 $ touch /Volumes/boot/ssh
 
-# If you want to automatically connect to a WiFi connection, create the file below using the example in the repo
+# Automatically connect to a WiFi connection
+# Create the file below using the example in the repo
 $ nano /Volumes/boot/wpa_supplicant.conf
 
 # Connect to Raspberry Pi
@@ -21,12 +22,11 @@ $ ssh pi@192.168.*.* # Default password is 'raspberry'
 
 ## Available scripts
 
-|     Script Name     | Description                                                   | Superuser priviliges? |
-|:-------------------:|---------------------------------------------------------------|-----------------------|
-|  piconf_defaults.sh | Changes default user password, hostname and adds custom MOTD. | Yes |
-|  piconf_security.sh | Adds new user, removes default 'pi' user, installs `ufw` firewall and `fail2ban`. | Yes |
-|  piconf_lamp.sh | Installs and sets sane defaults for LAMP stack (Apache, MariaDB, PHP) | Yes |
-|                     |                       |  |
+| Script Name | Description | Superuser priviliges? |
+|---|---|---|
+| piconf_defaults.sh | Changes default user password, hostname and adds custom MOTD. | Yes |
+| piconf_security.sh | Installs `ufw` firewall and `fail2ban`. | Yes |
+| piconf_lamp.sh | Installs and sets sane defaults for LAMP stack (Apache, MariaDB, PHP) | Yes |
 
 
 ## Usage
