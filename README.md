@@ -22,7 +22,7 @@ $ ssh pi@raspberrypi.local # Default password is 'raspberry'
 ## Available scripts
 
 | Script Name | Description |
-|---|---|---|
+|---|---|
 | piconf_defaults.sh | Changes default user password, hostname and adds custom MOTD. |
 
 
