@@ -1,6 +1,6 @@
 # piconf
 
-> Instantaneous configuration scripts with different solutions for Raspberry Pi.
+> Scripts collection for Raspberry Pi.
 
 ## Raspberry Pi initial setup
 
@@ -16,17 +16,14 @@ $ touch /Volumes/boot/ssh
 $ nano /Volumes/boot/wpa_supplicant.conf
 
 # Connect to Raspberry Pi
-$ ping raspberrypi.local # Find Raspberry's local IP address
-$ ssh pi@192.168.*.* # Default password is 'raspberry'
+$ ssh pi@raspberrypi.local # Default password is 'raspberry'
 ```
 
 ## Available scripts
 
-| Script Name | Description | Superuser priviliges? |
+| Script Name | Description |
 |---|---|---|
-| piconf_defaults.sh | Changes default user password, hostname and adds custom MOTD. | Yes |
-| piconf_security.sh | Installs `ufw` firewall and `fail2ban`. | Yes |
-| piconf_lamp.sh | Installs and sets sane defaults for LAMP stack (Apache, MariaDB, PHP) | Yes |
+| piconf_defaults.sh | Changes default user password, hostname and adds custom MOTD. |
 
 
 ## Usage

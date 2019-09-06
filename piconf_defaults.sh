@@ -9,26 +9,25 @@ IFS=$'\n\t'
 
 # Check if user has superuser priviliges
 if [[ "$EUID" -ne 0 ]]; then
-	printf "[!] You need superuser privileges to run this script!\n"
-	exit 1
+    printf "[!] You need superuser privileges to run this script!\n"
+    exit 1
 fi
-
-# Set new password
-read -s -p "[?] New password: " NEW_PASSWORD
-printf "\n"
-printf "pi:${NEW_PASSWORD}" | sudo chpasswd
 
 # Set new hostname
 read -p "[?] New hostname: " NEW_HOSTNAME
 truncate -s 0 /etc/hostname
 printf ${NEW_HOSTNAME} > /etc/hostname
 sed -i "$ d" /etc/hosts
-printf "127.0.1.1		${NEW_HOSTNAME}" > /etc/hosts
+printf "127.0.1.1       ${NEW_HOSTNAME}" > /etc/hosts
+
+# Set new password
+read -s -p "[?] New password: " NEW_PASSWORD
+printf "\n"
+printf "${NEW_HOSTNAME}:${NEW_PASSWORD}" | sudo chpasswd
 
 # Update MOTD
 printf "\n[!] Updating MOTD..\n"
-rm -f /etc/motd
-rm -rf /etc/update-motd.d/*
+rm -rf /etc/motd /etc/update-motd.d/*
 chmod +x ./MOTD
 cp ./MOTD /etc/update-motd.d/10-info
 
