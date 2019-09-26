@@ -2,9 +2,8 @@
 
 > Scripts collection for Raspberry Pi.
 
-## Raspberry Pi initial setup
+## Raspbian Setup
 
-* [Official NOOBS downloads](https://www.raspberrypi.org/downloads/noobs/)
 * [Official Raspbian downloads](https://www.raspberrypi.org/downloads/raspbian/)
 
 ```bash
@@ -19,7 +18,24 @@ $ nano /Volumes/boot/wpa_supplicant.conf
 $ ssh pi@raspberrypi.local # Default password is 'raspberry'
 ```
 
-## Available scripts
+## DietPi Setup
+
+* [Official DietPi downloads](https://dietpi.com)
+
+Initial configuration file can be found in the downloaded archive under the name `dietpi.txt`.
+
+```bash
+# Connect to Raspberry Pi
+$ ssh pi@192.168.0.100 # Default password is 'dietpi'
+
+# Launch DietPi menu
+$ dietpi-launcher
+
+# Install additional software
+$ dietpi-software
+```
+
+## Available Scripts
 
 | Script Name | Description |
 |---|---|
