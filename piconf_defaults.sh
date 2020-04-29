@@ -13,17 +13,17 @@ if [[ "$EUID" -ne 0 ]]; then
     exit 1
 fi
 
+# Set new password
+read -s -p "[?] New password: " NEW_PASSWORD
+printf "\n"
+printf "raspberrypi:${NEW_PASSWORD}" | sudo chpasswd
+
 # Set new hostname
 read -p "[?] New hostname: " NEW_HOSTNAME
 truncate -s 0 /etc/hostname
 printf ${NEW_HOSTNAME} > /etc/hostname
 sed -i "$ d" /etc/hosts
 printf "127.0.1.1       ${NEW_HOSTNAME}" > /etc/hosts
-
-# Set new password
-read -s -p "[?] New password: " NEW_PASSWORD
-printf "\n"
-printf "${NEW_HOSTNAME}:${NEW_PASSWORD}" | sudo chpasswd
 
 # Update MOTD
 printf "\n[!] Updating MOTD..\n"
