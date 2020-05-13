@@ -5,6 +5,7 @@
 ## Raspbian Setup
 
 * [Official Raspbian downloads](https://www.raspberrypi.org/downloads/raspbian/)
+* [Raspbian image customisation](https://www.pibakery.org/)
 
 ```bash
 # Enable SSH
