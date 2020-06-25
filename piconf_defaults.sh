@@ -14,9 +14,7 @@ if [[ "$EUID" -ne 0 ]]; then
 fi
 
 # Set new password
-read -s -p "[?] New password: " NEW_PASSWORD
-printf "\n"
-printf "raspberrypi:${NEW_PASSWORD}" | sudo chpasswd
+passwd
 
 # Set new hostname
 read -p "[?] New hostname: " NEW_HOSTNAME
