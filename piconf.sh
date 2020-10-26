@@ -13,9 +13,6 @@ if [[ "$EUID" -ne 0 ]]; then
     exit 1
 fi
 
-# Set new password
-passwd
-
 # Set new hostname
 read -p "[?] New hostname: " NEW_HOSTNAME
 truncate -s 0 /etc/hostname
@@ -24,10 +21,10 @@ sed -i "$ d" /etc/hosts
 printf "127.0.1.1       ${NEW_HOSTNAME}" > /etc/hosts
 
 # Update MOTD
-printf "\n[!] Updating MOTD..\n"
+printf "[!] Updating MOTD..\n"
 rm -rf /etc/motd /etc/update-motd.d/*
 chmod +x ./MOTD
 cp ./MOTD /etc/update-motd.d/10-info
 
 # Finito!
-printf "\n[!] Done! Reboot your Raspberry Pi to see changes take effect.\n"
+printf "[!] Done! Reboot your Raspberry Pi to see changes take effect.\n"

@@ -1,11 +1,10 @@
 # piconf
 
-> Scripts collection for Raspberry Pi.
+> Raspberry Pi configurations and scripts.
 
 ## Raspbian Setup
 
-* [Official Raspbian downloads](https://www.raspberrypi.org/downloads/raspbian/)
-* [Raspbian image customisation](https://www.pibakery.org/)
+* [Raspberry Pi OS](https://www.raspberrypi.org/downloads/raspberry-pi-os/)
 
 ```bash
 # Enable SSH
@@ -17,36 +16,16 @@ $ nano /Volumes/boot/wpa_supplicant.conf
 
 # Connect to Raspberry Pi
 $ ssh pi@raspberrypi.local # Default password is 'raspberry'
+
+# Change default password
+$ passwd
 ```
-
-## DietPi Setup
-
-* [Official DietPi downloads](https://dietpi.com)
-
-Initial configuration file can be found in the downloaded archive under the name `dietpi.txt`.
-
-```bash
-# Connect to Raspberry Pi
-$ ssh pi@192.168.0.100 # Default password is 'dietpi'
-
-# Launch DietPi menu
-$ dietpi-launcher
-
-# Install additional software
-$ dietpi-software
-```
-
-## Available Scripts
-
-| Script Name | Description |
-|---|---|
-| piconf_defaults.sh | Changes default user password, hostname and adds custom MOTD. |
-
 
 ## Usage
 
 ```bash
-$ sudo bash piconf_defaults.sh
+$ chmod +x piconf.sh
+$ sudo bash piconf.sh
 ```
 
 ## License
