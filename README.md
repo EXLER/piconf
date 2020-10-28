@@ -2,9 +2,9 @@
 
 > Raspberry Pi configurations and scripts.
 
-## Raspbian Setup
+## Raspberry Pi OS setup
 
-* [Raspberry Pi OS](https://www.raspberrypi.org/downloads/raspberry-pi-os/)
+* [Raspberry Pi OS download](https://www.raspberrypi.org/downloads/raspberry-pi-os/)
 
 ```bash
 # Enable SSH
@@ -30,6 +30,6 @@ $ sudo bash piconf.sh
 
 ## License
 
-Copyright (c) 2019 by ***Kamil Marut***.
+Copyright (c) 2019-2020 by ***Kamil Marut***.
 
 ***piconf*** is under the terms of the [MIT License](https://www.tldrlegal.com/l/mit), following all clarifications stated in the [license file](LICENSE).
