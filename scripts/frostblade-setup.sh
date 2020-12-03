@@ -14,11 +14,21 @@ if [[ "$EUID" -ne 0 ]]; then
 fi
 
 # Install common software
+printf "[!] Updating and installing software\n"
 apt update
-apt install git curl
+apt full-upgrade -y
+apt install -y git curl libffi-dev libssl-dev python3-dev python3 python3-pip
+
+# Install Docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+bash get-docker.sh
+usermod -aG docker pi
+
+# Install docker-compose
+pip3 install docker-compose
 
 # Set new hostname
-printf "[!] Setting new hostname\n0"
+printf "[!] Setting new hostname\n"
 truncate -s 0 /etc/hostname
 printf "frostblade" > /etc/hostname
 sed -i "$ d" /etc/hosts
