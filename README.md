@@ -1,8 +1,8 @@
 # piconf
 
-> Raspberry Pi configurations and scripts.
+> Configuration files, installation and utility scripts for various Raspberry Pi setups.
 
-## Raspberry Pi OS setup
+## Raspberry Pi OS
 
 * [Raspberry Pi OS download](https://www.raspberrypi.org/downloads/raspberry-pi-os/)
 
@@ -19,13 +19,6 @@ $ ssh pi@raspberrypi.local # Default password is 'raspberry'
 
 # Change default password
 $ passwd
-```
-
-## Usage
-
-```bash
-$ chmod +x piconf.sh
-$ sudo bash piconf.sh
 ```
 
 ## License

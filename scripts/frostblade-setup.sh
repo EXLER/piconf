@@ -13,18 +13,23 @@ if [[ "$EUID" -ne 0 ]]; then
     exit 1
 fi
 
+# Install common software
+apt update
+apt install git curl
+
 # Set new hostname
-read -p "[?] New hostname: " NEW_HOSTNAME
+printf "[!] Setting new hostname\n0"
 truncate -s 0 /etc/hostname
-printf ${NEW_HOSTNAME} > /etc/hostname
+printf "frostblade" > /etc/hostname
 sed -i "$ d" /etc/hosts
-printf "127.0.1.1       ${NEW_HOSTNAME}" > /etc/hosts
+printf "127.0.1.1       frostblade" > /etc/hosts
 
 # Update MOTD
-printf "[!] Updating MOTD..\n"
+printf "[!] Updating MOTD\n"
 rm -rf /etc/motd /etc/update-motd.d/*
-chmod +x ./MOTD
-cp ./MOTD /etc/update-motd.d/10-info
+wget https://raw.githubusercontent.com/EXLER/piconf/master/resources/frostblade-motd
+chmod +x ./frostblade-motd
+mv ./frostblade-motd /etc/update-motd.d/10-info
 
 # Finito!
 printf "[!] Done! Reboot your Raspberry Pi to see changes take effect.\n"
