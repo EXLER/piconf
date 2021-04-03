@@ -37,7 +37,7 @@ printf "127.0.1.1       frostblade" > /etc/hosts
 # Update MOTD
 printf "[!] Updating MOTD\n"
 rm -rf /etc/motd /etc/update-motd.d/*
-wget https://raw.githubusercontent.com/EXLER/piconf/master/resources/frostblade-motd
+wget https://raw.githubusercontent.com/EXLER/piconf/master/resources/frostblade/frostblade-motd
 chmod +x ./frostblade-motd
 mv ./frostblade-motd /etc/update-motd.d/10-info
 
