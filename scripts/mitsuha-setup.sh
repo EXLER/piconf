@@ -7,8 +7,11 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# Install Docker
+# Update packages
 apt update
+apt full-upgrade
+
+# Install Docker
 apt install -y apt-transport-https \
     ca-certificates \
     curl \
@@ -30,15 +33,11 @@ usermod -aG docker debian
 curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
+# Create 'web' network for traefik
+docker network create web
+
 # Change default SSH port
 echo "Port 47777" | sudo tee -a /etc/ssh/sshd_config > /dev/null
-
-# Install firewall
-apt install ufw
-ufw allow 47777/tcp
-ufw allow http
-ufw allow https
-ufw enable
 
 # Finish
 reboot
