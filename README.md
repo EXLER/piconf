@@ -1,10 +1,11 @@
-# piconf
+# post-config
 
-> Configuration files, installation and utility scripts for various Raspberry Pi setups.
+> Post-configuration scripts and resources for servers.
 
-## Raspberry Pi OS
+## Configurations
+### Raspberry Pi
 
-* [Raspberry Pi OS download](https://www.raspberrypi.org/downloads/raspberry-pi-os/)
+* [Raspberry Pi OS download](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit)
 
 ```bash
 # Enable SSH
@@ -21,7 +22,7 @@ $ ssh pi@raspberrypi.local # Default password is 'raspberry'
 $ passwd
 ```
 
-## Connecting and auto-booting external hard drive
+**Connecting and auto-booting external hard drive**
 
 1. Plug in your external hard drive to Raspberry Pi. If you are using a NTFS formatted drive, install the following package
 ```bash
@@ -59,4 +60,4 @@ UUID=276065A9727C5848 /mnt/external ntfs-3g async,big_writes,noatime,nodiratime,
 
 Copyright (c) 2019-2021 by ***Kamil Marut***.
 
-`piconf` is under the terms of the [MIT License](https://www.tldrlegal.com/l/mit), following all clarifications stated in the [license file](LICENSE).
+`post-config` is under the terms of the [MIT License](https://www.tldrlegal.com/l/mit), following all clarifications stated in the [license file](LICENSE).
