@@ -42,7 +42,7 @@ docker network create web
 mkdir /home/debian/www
 touch /home/debian/www/acme.json
 chmod 600 /home/debian/www/acme.json
-curl -o .env https://github.com/exler/post-config/blob/master/resources/mitsuha/.env.example
+curl -o /home/debian/www/.env https://raw.githubusercontent.com/exler/post-config/master/resources/mitsuha/.env.example
 chown -R debian:debian /home/debian/www
 
 # Finish

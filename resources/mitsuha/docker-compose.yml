@@ -39,7 +39,7 @@ services:
     watchtower:
         image: containrrr/watchtower:latest
         container_name: watchtower
-        command: --schedule "0 4 * * *" --label-enable --cleanup
+        command: --schedule "0 0 4 * * 6" --label-enable --cleanup
         environment:
             - TZ=${TZ}
         volumes:
@@ -59,6 +59,27 @@ services:
     #         - "traefik.http.routers.whoami.tls.certresolver=letsencrypt"
     #         - "traefik.http.routers.whoami.tls.domains[0].main=whoami.${DOMAIN_BASE}"
 
+    heimdall:
+        image: linuxserver/heimdall:latest
+        container_name: heimdall
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+        volumes:
+            - ${PERSISTENT_DIR}/heimdall/config:/config
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.heimdall.entrypoints=https"
+            - "traefik.http.routers.heimdall.rule=Host(`${DOMAIN_BASE}`)"
+            - "traefik.http.routers.heimdall.tls=true"
+            - "traefik.http.routers.heimdall.tls.certresolver=letsencrypt"
+            - "traefik.http.routers.heimdall.tls.domains[0].main=${DOMAIN_BASE}"
+            - "traefik.http.services.heimdall.loadbalancer.server.port=80"
+            - "com.centurylinklabs.watchtower.enable=true"
+        networks:
+            - web
+        restart: unless-stopped
 
 networks: 
     web:

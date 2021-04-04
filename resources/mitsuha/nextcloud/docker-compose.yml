@@ -5,13 +5,13 @@ services:
         image: crazymax/nextcloud
         container_name: nextcloud
         depends_on:
-            - nextcloud_db
+            - db
         environment:
             - "PUID=${PUID}"
             - "PGID=${PGID}"
             - "TZ=${TZ}"
             - "DB_TYPE=mysql"
-            - "DB_HOST=nextcloud_db"
+            - "DB_HOST=db"
             - "DB_NAME=nextcloud"
             - "DB_USER=nextcloud"
             - "DB_PASSWORD=${MYSQL_NEXTCLOUD_PASSWORD}"
@@ -32,9 +32,10 @@ services:
             - "com.centurylinklabs.watchtower.enable=true"
         networks:
             - web
+            - internal
         restart: unless-stopped
         
-    nextcloud_db:
+    db:
         image: mariadb:10.5
         container_name: nextcloud_db
         environment:
@@ -49,9 +50,12 @@ services:
             - ${PERSISTENT_DIR}/nextcloud/db:/var/lib/mysql
         labels:
             - "com.centurylinklabs.watchtower.enable=true"
+        networks:
+            - internal
         restart: unless-stopped
 
 
-networks: 
+networks:
+    internal:
     web:
         external: true
