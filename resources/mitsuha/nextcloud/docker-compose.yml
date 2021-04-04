@@ -1,0 +1,57 @@
+version: "3.3"
+
+services:
+    nextcloud:
+        image: crazymax/nextcloud
+        container_name: nextcloud
+        depends_on:
+            - nextcloud_db
+        environment:
+            - "PUID=${PUID}"
+            - "PGID=${PGID}"
+            - "TZ=${TZ}"
+            - "DB_TYPE=mysql"
+            - "DB_HOST=nextcloud_db"
+            - "DB_NAME=nextcloud"
+            - "DB_USER=nextcloud"
+            - "DB_PASSWORD=${MYSQL_NEXTCLOUD_PASSWORD}"
+        volumes:
+            - ${PERSISTENT_DIR}/nextcloud/data:/data
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.nextcloud.entrypoints=https"
+            - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.${DOMAIN_BASE}`)"
+            - "traefik.http.routers.nextcloud.middlewares=nextcloud-regex"
+            - "traefik.http.routers.nextcloud.tls=true"
+            - "traefik.http.routers.nextcloud.tls.certresolver=letsencrypt"
+            - "traefik.http.routers.nextcloud.tls.domains[0].main=nextcloud.${DOMAIN_BASE}"
+            - "traefik.http.services.nextcloud.loadbalancer.server.port=8000"
+            - "traefik.http.middlewares.nextcloud-regex.redirectregex.regex=https://(.*)/.well-known/(card|cal)dav"
+            - "traefik.http.middlewares.nextcloud-regex.redirectregex.replacement=https://$$1/remote.php/dav/"
+            - "traefik.http.middlewares.nextcloud-regex.redirectregex.permanent=true"
+            - "com.centurylinklabs.watchtower.enable=true"
+        networks:
+            - web
+        restart: unless-stopped
+        
+    nextcloud_db:
+        image: mariadb:10.5
+        container_name: nextcloud_db
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+            - MYSQL_USER=nextcloud
+            - MYSQL_DATABASE=nextcloud
+            - MYSQL_PASSWORD=${MYSQL_NEXTCLOUD_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        volumes:
+            - ${PERSISTENT_DIR}/nextcloud/db:/var/lib/mysql
+        labels:
+            - "com.centurylinklabs.watchtower.enable=true"
+        restart: unless-stopped
+
+
+networks: 
+    web:
+        external: true

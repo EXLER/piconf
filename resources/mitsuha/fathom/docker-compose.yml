@@ -1,0 +1,47 @@
+version: "3"
+services:
+	fathom:
+		image: usefathom/fathom:latest
+		environment:
+			- "FATHOM_SERVER_ADDR=:8080"
+			- "FATHOM_GZIP=true"
+			- "FATHOM_DEBUG=false"
+			- "FATHOM_DATABASE_DRIVER=mysql"
+			- "FATHOM_DATABASE_NAME=fathom"
+			- "FATHOM_DATABASE_USER=fathom"
+			- "FATHOM_DATABASE_PASSWORD=${MYSQL_FATHOM_PASSWORD}"
+			- "FATHOM_DATABASE_HOST=fathom_db:3306"
+			- "FATHOM_SECRET=${FATHOM_SECRET}"
+		depends_on:
+			- fathom_db
+		networks:
+			- web
+		labels:
+			- "traefik.enable=true"
+			- "traefik.http.routers.analytics.entrypoints=https"
+			- "traefik.http.routers.analytics.rule=Host(`analytics.${DOMAIN_BASE}`)"
+			- "traefik.http.routers.analytics.tls=true"
+			- "traefik.http.routers.analytics.tls.certresolver=letsencrypt"
+			- "traefik.http.routers.analytics.tls.domains[0].main=analytics.${DOMAIN_BASE}"
+			- "traefik.http.services.analytics.loadbalancer.server.port=8080"
+			- "com.centurylinklabs.watchtower.enable=true"
+		restart: unless-stopped
+	
+	fathom_db:
+		image: "mariadb:10.5"
+		volumes:
+			- ${PERSISTENT_DIR}/fathom/db:/var/lib/mysql
+		environment:
+			- PUID=${PUID}
+			- PGID=${PGID}
+			- TZ=${TZ}
+			- MYSQL_USER=fathom
+			- MYSQL_DATABASE=fathom
+			- MYSQL_PASSWORD=${MYSQL_FATHOM_PASSWORD}
+			- MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+		restart: unless-stopped
+
+
+networks: 
+      web:
+          external: true

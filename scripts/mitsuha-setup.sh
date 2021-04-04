@@ -12,7 +12,8 @@ apt update
 apt full-upgrade
 
 # Install Docker
-apt install -y apt-transport-https \
+apt install -y apache2-utils \
+    apt-transport-https \
     ca-certificates \
     curl \
     gnupg \
@@ -33,11 +34,16 @@ usermod -aG docker debian
 curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-# Create 'web' network for traefik
-docker network create web
-
 # Change default SSH port
 echo "Port 47777" | sudo tee -a /etc/ssh/sshd_config > /dev/null
+
+# Additional hosting related
+docker network create web
+mkdir /home/debian/www
+touch /home/debian/www/acme.json
+chmod 600 /home/debian/www/acme.json
+curl -o .env https://github.com/exler/post-config/blob/master/resources/mitsuha/.env.example
+chown -R debian:debian /home/debian/www
 
 # Finish
 reboot
