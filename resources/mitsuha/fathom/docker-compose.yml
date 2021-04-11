@@ -1,6 +1,6 @@
 version: "3"
 services:
-    matomo:
+    fathom:
         image: usefathom/fathom:latest
         environment:
             - "FATHOM_SERVER_ADDR=:8080"
