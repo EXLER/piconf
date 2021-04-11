@@ -29,7 +29,6 @@ services:
             - "traefik.http.middlewares.nextcloud-regex.redirectregex.regex=https://(.*)/.well-known/(card|cal)dav"
             - "traefik.http.middlewares.nextcloud-regex.redirectregex.replacement=https://$$1/remote.php/dav/"
             - "traefik.http.middlewares.nextcloud-regex.redirectregex.permanent=true"
-            - "com.centurylinklabs.watchtower.enable=true"
         networks:
             - web
             - internal
@@ -48,8 +47,6 @@ services:
             - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         volumes:
             - ${PERSISTENT_DIR}/nextcloud/db:/var/lib/mysql
-        labels:
-            - "com.centurylinklabs.watchtower.enable=true"
         networks:
             - internal
         restart: unless-stopped
