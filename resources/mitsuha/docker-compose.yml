@@ -45,15 +45,11 @@ services:
     #         - "traefik.http.routers.whoami.tls.certresolver=letsencrypt"
     #         - "traefik.http.routers.whoami.tls.domains[0].main=whoami.${DOMAIN_BASE}"
 
-    heimdall:
-        image: linuxserver/heimdall:latest
-        container_name: heimdall
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-            - TZ=${TZ}
+    static:
+        image: nginx:latest
+        container_name: static
         volumes:
-            - ${PERSISTENT_DIR}/heimdall/config:/config
+            - ${PERSISTENT_DIR}/nginx/html:/usr/share/nginx/html:ro
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.heimdall.entrypoints=https"
