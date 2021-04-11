@@ -2,6 +2,7 @@ version: "3"
 services:
     fathom:
         image: usefathom/fathom:latest
+        container_name: fathom
         environment:
             - "FATHOM_SERVER_ADDR=:8080"
             - "FATHOM_GZIP=true"
