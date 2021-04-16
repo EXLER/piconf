@@ -74,6 +74,8 @@ services:
       - ${PERSISTENT_DIR}/static/html:/usr/share/nginx/html:ro
     environment:
       - VIRTUAL_HOST=${DOMAIN_BASE}
+      - LETSENCRYPT_HOST=${DOMAIN_BASE}
+      - LETSENCRYPT_EMAIL=${ACME_EMAIL}
     restart: unless-stopped
 
 volumes:

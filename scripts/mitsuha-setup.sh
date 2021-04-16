@@ -38,10 +38,7 @@ chmod +x /usr/local/bin/docker-compose
 echo "Port 47777" | sudo tee -a /etc/ssh/sshd_config > /dev/null
 
 # Additional hosting related
-docker network create web
 mkdir /home/debian/www
-touch /home/debian/www/acme.json
-chmod 600 /home/debian/www/acme.json
 curl -o /home/debian/www/.env https://raw.githubusercontent.com/exler/post-config/master/resources/mitsuha/.env.example
 chown -R debian:debian /home/debian/www
 
