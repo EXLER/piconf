@@ -4,12 +4,8 @@
 
 ## Configurations
 ### Dedicated servers
-* Create and start the base `docker-compose.yml` with Traefik in root folder
-* Fill the `.env` file
-* Download services and symlink the `.env` file:
-```bash
-$ ln -s /home/debian/www/.env /home/debian/www/service/.env
-```
+* Change the default password with `passwd`
+* Fill missing variables in `.env`
 
 ### Raspberry Pi
 * [Raspberry Pi OS download](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit)

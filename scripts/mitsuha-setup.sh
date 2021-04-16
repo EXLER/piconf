@@ -40,6 +40,7 @@ echo "Port 47777" | sudo tee -a /etc/ssh/sshd_config > /dev/null
 # Additional hosting related
 mkdir /home/debian/www
 curl -o /home/debian/www/.env https://raw.githubusercontent.com/exler/post-config/master/resources/mitsuha/.env.example
+curl -o /home/debian/www/docker-compose.yml https://raw.githubusercontent.com/exler/post-config/master/resources/mitsuha/docker-compose.yml
 chown -R debian:debian /home/debian/www
 
 # Finish

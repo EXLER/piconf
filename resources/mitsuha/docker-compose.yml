@@ -14,7 +14,6 @@ services:
       - ${PERSISTENT_DIR}/proxy/vhost.d:/etc/nginx/vhost.d:rw
       - ${PERSISTENT_DIR}/proxy/html:/usr/share/nginx/html:rw
       - ${PERSISTENT_DIR}/proxy/certs:/etc/nginx/certs:ro
-      - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
     restart: unless-stopped
   
@@ -27,17 +26,16 @@ services:
       - ${PERSISTENT_DIR}/proxy/certs:/etc/nginx/certs:rw
       - ${PERSISTENT_DIR}/proxy/vhost.d:/etc/nginx/vhost.d:rw
       - ${PERSISTENT_DIR}/proxy/html:/usr/share/nginx/html:rw
-      - /etc/localtime:/etc/localtime:ro  
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
 
   db:
-    image: mariadb
+    image: linuxserver/mariadb:latest
     container_name: nextcloud-mariadb
     volumes:
       - db:/var/lib/mysql
-      - /etc/localtime:/etc/localtime:ro
     environment:
+      - TZ=${TZ}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_PASSWORD=nextcloud
       - MYSQL_DATABASE=nextcloud
@@ -54,8 +52,8 @@ services:
     volumes:
       - ${PERSISTENT_DIR}/app/config:/config:rw
       - ${PERSISTENT_DIR}/app/data:/data:rw
-      - /etc/localtime:/etc/localtime:ro
     environment:
+      - TZ=${TZ}
       - VIRTUAL_HOST=nextcloud.${DOMAIN_BASE}
       - VIRTUAL_PORT=443
       - VIRTUAL_PROTO=https
@@ -63,14 +61,14 @@ services:
       - LETSENCRYPT_EMAIL=${ACME_EMAIL}
     restart: unless-stopped
 
-  static:
+  frontpage:
     image: nginx:latest
-    container_name: static
+    container_name: frontpage
     depends_on: 
       - letsencrypt
       - proxy
     volumes:
-      - ${PERSISTENT_DIR}/static/html:/usr/share/nginx/html:ro
+      - ${PERSISTENT_DIR}/frontpage/html:/usr/share/nginx/html:ro
     environment:
       - VIRTUAL_HOST=${DOMAIN_BASE}
       - LETSENCRYPT_HOST=${DOMAIN_BASE}
