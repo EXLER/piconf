@@ -27,7 +27,7 @@ services:
       - ${PERSISTENT_DIR}/proxy/certs:/etc/nginx/certs:rw
       - ${PERSISTENT_DIR}/proxy/vhost.d:/etc/nginx/vhost.d:rw
       - ${PERSISTENT_DIR}/proxy/html:/usr/share/nginx/html:rw
-      - /etc/localtime:/etc/localtime:ro
+      - /etc/localtime:/etc/localtime:ro  
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
 
@@ -45,21 +45,20 @@ services:
     restart: unless-stopped
   
   app:
-    image: nextcloud:latest
+    image: linuxserver/nextcloud:latest
     container_name: nextcloud-app
     depends_on:
       - letsencrypt
       - proxy
       - db
     volumes:
-      - nextcloud:/var/www/html
-      - ${PERSISTENT_DIR}/app/config:/var/www/html/config
-      - ${PERSISTENT_DIR}/app/custom_apps:/var/www/html/custom_apps
-      - ${PERSISTENT_DIR}/app/data:/var/www/html/data
-      - ${PERSISTENT_DIR}/app/themes:/var/www/html/themes
+      - ${PERSISTENT_DIR}/app/config:/config:rw
+      - ${PERSISTENT_DIR}/app/data:/data:rw
       - /etc/localtime:/etc/localtime:ro
     environment:
       - VIRTUAL_HOST=nextcloud.${DOMAIN_BASE}
+      - VIRTUAL_PORT=443
+      - VIRTUAL_PROTO=https
       - LETSENCRYPT_HOST=nextcloud.${DOMAIN_BASE}
       - LETSENCRYPT_EMAIL=${ACME_EMAIL}
     restart: unless-stopped
@@ -79,6 +78,5 @@ services:
     restart: unless-stopped
 
 volumes:
-  nextcloud:
   db:
 
