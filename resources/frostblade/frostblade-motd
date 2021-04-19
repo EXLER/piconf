@@ -15,7 +15,7 @@ echo "$(tput setaf 4)
 _\_\/\/_/_  Uptime.............: ${UPTIME}
  _\_\/_/_   Memory.............: `awk '/MemFree/ {printf( "%d\n", $2 / 1024 )}' /proc/meminfo`MB (Free) / `awk '/MemTotal/ {printf( "%d\n", $2 / 1024 )}' /proc/meminfo`MB (Total)
 __/_/\_\__  CPU Temperature....: `/opt/vc/bin/vcgencmd measure_temp | cut -c 6-`
- / /\/\ \   IP Addresses.......: `ip a | grep glo | awk '{print $2}' | head -1 | cut -f1 -d/`
+ / /\/\ \   IP Address.........: `ip a | grep glo | awk '{print $2}' | head -1 | cut -f1 -d/`
     /\      
 $(tput sgr0)"
 
