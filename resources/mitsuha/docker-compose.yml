@@ -50,7 +50,7 @@ services:
     depends_on:
       - letsencrypt
       - proxy
-      - db
+      - nextcloud-db
     volumes:
       - ${PERSISTENT_DIR}/app/config:/config:rw
       - ${PERSISTENT_DIR}/app/data:/data:rw
