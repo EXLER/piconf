@@ -29,20 +29,22 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
 
-  db:
+  nextcloud-db:
     image: linuxserver/mariadb:latest
-    container_name: nextcloud-mariadb
+    container_name: nextcloud-db
     volumes:
       - db:/var/lib/mysql
     environment:
       - TZ=${TZ}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - MYSQL_ROOT_PASSWORD=nextcloud
       - MYSQL_PASSWORD=nextcloud
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
     restart: unless-stopped
   
-  app:
+  nextcloud-app:
     image: linuxserver/nextcloud:latest
     container_name: nextcloud-app
     depends_on:
@@ -54,6 +56,8 @@ services:
       - ${PERSISTENT_DIR}/app/data:/data:rw
     environment:
       - TZ=${TZ}
+      - PUID=${PUID}
+      - PGID=${PGID}
       - VIRTUAL_HOST=nextcloud.${DOMAIN_BASE}
       - VIRTUAL_PORT=443
       - VIRTUAL_PROTO=https
