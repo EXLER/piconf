@@ -9,7 +9,7 @@ IFS=$'\n\t'
 
 # Update packages
 apt update
-apt full-upgrade
+apt full-upgrade -y
 
 # Install Docker
 apt install -y apache2-utils \
